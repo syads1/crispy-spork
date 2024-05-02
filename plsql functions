@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION calculate_circle_area(radius NUMBER)
+RETURN NUMBER
+IS
+    pi CONSTANT NUMBER := 3.14159;
+    area NUMBER;
+BEGIN
+    area := pi * radius * radius;
+    RETURN area;
+END;
+/
+
+SELECT calculate_circle_area(5) AS circle_area FROM dual;
