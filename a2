@@ -1,1 +1,12 @@
+SELECT COUNT(*) AS total_records FROM your_table;
+
+SELECT SUM(column_name) AS total_sum FROM your_table;
+
+SELECT column1 FROM table1
+UNION
+SELECT column1 FROM table2;
+
+SELECT * FROM your_table WHERE column_name = 'value';
+
+SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM your_table;
 
