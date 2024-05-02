@@ -1,0 +1,12 @@
+SELECT * FROM employees WHERE department = 'HR' AND salary > 50000;
+
+SELECT * FROM employees WHERE department = 'HR' OR department = 'Finance';
+
+SELECT * FROM employees WHERE NOT department = 'IT';
+
+SELECT * FROM products WHERE product_name LIKE 'Apple%';
+
+SELECT * FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';
+
+//IN Operator: Selects rows where a column value matches any value in a list.
+SELECT * FROM employees WHERE department IN ('HR', 'Finance', 'Marketing');
