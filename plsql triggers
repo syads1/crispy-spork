@@ -1,0 +1,23 @@
+-- Create the log table to store information about employee insertions
+CREATE TABLE employee_log (
+    log_id NUMBER PRIMARY KEY,
+    employee_id NUMBER,
+    action_date DATE,
+    action VARCHAR2(100)
+);
+
+-- Create the trigger
+CREATE OR REPLACE TRIGGER employee_insert_trigger
+AFTER INSERT ON employees
+FOR EACH ROW
+DECLARE
+    v_action VARCHAR2(100);
+BEGIN
+    -- Set the action description
+    v_action := 'New employee inserted: ' || :NEW.employee_id || ' - ' || :NEW.first_name || ' ' || :NEW.last_name;
+
+    -- Insert a record into the log table
+    INSERT INTO employee_log (log_id, employee_id, action_date, action)
+    VALUES (employee_log_seq.nextval, :NEW.employee_id, SYSDATE, v_action);
+END;
+/
