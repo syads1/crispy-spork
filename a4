@@ -1,0 +1,41 @@
+-- Create customers table
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    country VARCHAR(100)
+);
+
+-- Create orders table
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Insert sample data into customers table
+INSERT INTO customers (customer_id, customer_name, country) VALUES
+(1, 'John Doe', 'USA'),
+(2, 'Jane Smith', 'Canada'),
+(3, 'Alice Johnson', 'UK');
+
+-- Insert sample data into orders table
+INSERT INTO orders (order_id, customer_id, order_date) VALUES
+(1, 1, '2023-02-15'),
+(2, 2, '2023-03-20'),
+(3, 1, '2024-04-10'),
+(4, 3, '2024-01-05');
+
+
+SELECT c.customer_name, c.country
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_date > '2023-01-01';
+
+
+SELECT c.customer_name, c.country, (
+    SELECT COUNT(*)
+    FROM orders o
+    WHERE o.customer_id = c.customer_id
+) AS total_orders
+FROM customers c;
