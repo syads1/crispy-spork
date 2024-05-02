@@ -1,0 +1,21 @@
+CREATE OR REPLACE PROCEDURE get_department_employee_count(
+    department_name IN VARCHAR2,
+    total_employee_count OUT NUMBER
+)
+IS
+BEGIN
+    SELECT COUNT(*) INTO total_employee_count
+    FROM employees
+    WHERE department = department_name;
+END;
+/
+
+
+//Once the procedure is created, you can call it from PL/SQL or SQL like this:
+DECLARE
+    dept_count NUMBER;
+BEGIN
+    get_department_employee_count('Finance', dept_count);
+    DBMS_OUTPUT.PUT_LINE('Total employees in Finance department: ' || dept_count);
+END;
+/
