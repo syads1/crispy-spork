@@ -10,3 +10,36 @@ END;
 /
 
 SELECT calculate_circle_area(5) AS circle_area FROM dual;
+
+
+
+
+CREATE OR REPLACE FUNCTION factorial(n IN NUMBER) RETURN NUMBER
+IS
+    result NUMBER := 1;
+BEGIN
+    IF n < 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Factorial is not defined for negative numbers.');
+    ELSIF n = 0 THEN
+        RETURN 1;
+    ELSE
+        FOR i IN 1..n LOOP
+            result := result * i;
+        END LOOP;
+        RETURN result;
+    END IF;
+END;
+/
+
+
+
+
+DECLARE
+    i NUMBER := 1;
+BEGIN
+    WHILE i <= 10 LOOP
+        DBMS_OUTPUT.PUT_LINE('Current value of i: ' || i);
+        i := i + 1;
+    END LOOP;
+END;
+/
