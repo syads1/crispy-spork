@@ -1,0 +1,5 @@
+conn
+ed d:/foldername/samp.sql
+@d:/foldername/samp.sql
+set serveroutput on;
+@d:/foldername/samp.sql
