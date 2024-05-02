@@ -1,0 +1,55 @@
+CREATE DATABASE bookstore;
+
+USE bookstore;
+
+CREATE TABLE authors (
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author_id INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);
+
+
+INSERT INTO authors (author_name) VALUES
+('J.K. Rowling'),
+('Stephen King'),
+('Agatha Christie');
+
+INSERT INTO books (title, author_id, price) VALUES
+('Harry Potter and the Philosopher''s Stone', 1, 20.99),
+('The Shining', 2, 15.50),
+('Murder on the Orient Express', 3, 12.75);
+
+INSERT INTO customers (customer_name, email) VALUES
+('Alice Johnson', 'alice@example.com'),
+('Bob Smith', 'bob@example.com');
+
+
+UPDATE books SET price = 22.99 WHERE title = 'Harry Potter and the Philosopher''s Stone';
+
+
+DELETE FROM customers WHERE customer_name = 'Bob Smith';
+
+
+ALTER TABLE books ADD COLUMN publication_year INT;
+
+
+ALTER TABLE customers RENAME TO clients;
+
+
+TRUNCATE TABLE authors;
+
+
+DROP TABLE books;
